@@ -1,15 +1,17 @@
 #!/usr/bin/env python3
+import os
+import sys
 import re
 import requests
 
 """
-This script parses the html from the echanted learning website and prints it to stdout.
+This script parses the html from the echanted learning website and saves it the directory ./word-data
 We get about 20,000 words.
 """
 
-ENCHANTED_LEARNING_BASE = "http://www.enchantedlearning.com/wordlist/"
+ENCHANTED_LEARNING_BASE = 'http://www.enchantedlearning.com/wordlist/'
 FILETYPE = '.shtml'
-WORD=r"^(\w+)<BR>$"
+WORD=r'^(\w+)<BR>$'
 WORDLIST_LINK = r'^<a href="/wordlist/(\w+)\.shtml.*$'
 
 
@@ -17,7 +19,7 @@ def find_occurences(text, regex):
     return re.findall(regex, text, re.MULTILINE)
 
 def getPages():
-    """ get all possible pages from teh enchangtedlearning site """
+    """ get all possible pages from the enchangtedlearning site, by following their list of possible sites """
     text = getPage("farm")
     return find_occurences(text, WORDLIST_LINK)
 
@@ -34,24 +36,8 @@ def getWords(wordPackName):
     page = getPage(wordPackName)
     return find_occurences(page, WORD)
 
-def showResults(header, data):
-    print header
-    print
-    for line in data:
-        print line
-
-def scrapeAllWeCan():
-    if not os.path.exists(RESULTS_DIR):
-        os.mkdir(RESULTS_DIR)
-    for page in getPages():
-        words = getWords(page)
-        header = '\n' + '*' * 20 + '\n' + page
-        showResults(header, words)
-
 RESULTS_DIR = "./word-data/"
 def printInNiceFiles():
-    import os
-    import sys
     if not os.path.exists(RESULTS_DIR):
         os.mkdir(RESULTS_DIR)
 
