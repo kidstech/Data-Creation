@@ -9,11 +9,11 @@ This script parses the html from the echanted learning website and saves it the 
 We get about 20,000 words.
 """
 
+RESULTS_DIR = "./word-data/"
 ENCHANTED_LEARNING_BASE = 'http://www.enchantedlearning.com/wordlist/'
 FILETYPE = '.shtml'
 WORD=r'^(\w+)<BR>$'
 WORDLIST_LINK = r'^<a href="/wordlist/(\w+)\.shtml.*$'
-
 
 def find_occurences(text, regex):
     return re.findall(regex, text, re.MULTILINE)
@@ -36,7 +36,6 @@ def getWords(wordPackName):
     page = getPage(wordPackName)
     return find_occurences(page, WORD)
 
-RESULTS_DIR = "./word-data/"
 def printInNiceFiles():
     if not os.path.exists(RESULTS_DIR):
         os.mkdir(RESULTS_DIR)
