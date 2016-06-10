@@ -1,0 +1,25 @@
+{
+  "name": "datacreation",
+  "version": "1.0.0",
+  "description": "foo",
+  "main": "label_words.js",
+  "dependencies": {
+    "node-mongo-seeds": "^2.2.7",
+    "pos": "^0.3.0",
+    "wordpos": "^1.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kidstech/Data-Creation.git"
+  },
+  "author": "Elliott Beach",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kidstech/Data-Creation/issues"
+  },
+  "homepage": "https://github.com/kidstech/Data-Creation#readme"
+}
